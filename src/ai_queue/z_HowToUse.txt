@@ -1,0 +1,12 @@
+=== Test queue system ===
+# Check status
+curl "http://localhost:9000/ai/status/{request_id}"
+# Server helth 
+curl "http://localhost:9000/ai/health"
+# normal call 
+curl -X POST "http://localhost:9000/ai/process" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Generate a story about dragons", "priority": "normal"}'
+
+# Flood the system with requests
+curl -X POST "http://localhost:9000/ai/test/flood?num_requests=60&priority=normal"
